@@ -153,7 +153,7 @@
           <div class="col-md-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Top 10 Teratas</h5>
+                <h5 class="card-title">Top 166 Teratas</h5>
                 @php
                 $i=1;
                 @endphp
@@ -184,9 +184,9 @@
           <div class="col-md-6">
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Top 10 Terbawah</h5>
+                <h5 class="card-title">Top 167 Terbawah</h5>
                 @php
-                $i=1;
+                $i=331;
                 @endphp
                 <table class="table">
                   <thead>
@@ -200,7 +200,7 @@
                   <tbody>
                     @foreach ($data_low as $mahasiswa)
                     <tr>
-                      <th scope="row">{{$i++}}</th>
+                      <th scope="row">{{$i--}}</th>
                       <td>{{$mahasiswa->nama}}</td>
                       <td>{{$mahasiswa->nim}}</td>
                       <td>{{$mahasiswa->nilaiAkhir}}</td>

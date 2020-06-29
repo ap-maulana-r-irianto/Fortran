@@ -19,11 +19,11 @@ class AdminController extends Controller
     $data_top = Mahasiswa::orderBy('nilaiAkhir', 'DESC')
           ->join('kelompoks', 'kelompoks.idKelompok', '=', 'mahasiswas.idKelompok')
           ->where('kelompoks.idAngkatan', '=', $id_angkatan)
-          ->get()->take(10);
+          ->get()->take(331);
     $data_low = Mahasiswa::orderBy('nilaiAkhir', 'ASC')
           ->join('kelompoks', 'kelompoks.idKelompok', '=', 'mahasiswas.idKelompok')
           ->where('kelompoks.idAngkatan', '=', $id_angkatan)
-          ->get()->take(10);
+          ->get()->take(331);
     return view('admin.index', ['data_top' => $data_top, 'data_low' => $data_low]);
   }
 
@@ -59,7 +59,7 @@ class AdminController extends Controller
   public function getDataInputIndividu()
   {
     $id_angkatan = Angkatan::where('namaAngkatan', Config::get('app.angkatan'))->get()->first()->idAngkatan;
-    $kategori = Kategori::where('idKategori','<',19)->get();
+    $kategori = Kategori::all();
     $data = Nilai::where('nilais.idKategori','<',19)
     ->join('kategoris','nilais.idKategori','=','kategoris.idKategori')
     ->join('mahasiswas','nilais.nim','=','mahasiswas.nim')
@@ -100,7 +100,7 @@ class AdminController extends Controller
 
   public function getDataInputKelompok()
   {
-    $kategori = Kategori::whereBetween('idKategori',[19,29])->get();
+    $kategori = Kategori::all();
     $id_angkatan = Angkatan::where('namaAngkatan', Config::get('app.angkatan'))->get()->first()->idAngkatan;
     $kelompok = Kelompok::where('idAngkatan', $id_angkatan)->get();
     // $data = DB::select("select nilai, namaKelompok, tanggal,idKategori from nilais join mahasiswas on nilais.nim = mahasiswas.nim join kelompoks on mahasiswas.idKelompok = kelompoks.idKelompok group by tanggal,idKategori");
